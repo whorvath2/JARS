@@ -21,6 +21,12 @@ def run(script: str) -> str:
     return completed_process.stdout.decode("utf-8")
 
 def validate(script: str) -> bool:
+    """
+    Returns `True` if the supplied R script can be executed by Rscript, `False` otherwise.
+    
+    :param script: The script to be validated.
+    :return: `True` if the supplied R script can be executed by Rscript, `False` otherwise.
+    """
     completed_process: CompletedProcess = subprocess.run(
         ["Rscript", "-e", f"'parse(text = {script})'"], capture_output=True)
     LOG.debug(vars(completed_process))
