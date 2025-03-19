@@ -16,6 +16,7 @@ limitations under the License.
 from flask import Flask
 from flask_cors import CORS
 
+from co.deability.lirs.api.blueprints import analytics_blueprint
 
 def init_app() -> Flask:
 
@@ -32,4 +33,4 @@ def _register_error_handlers(app) -> None:
     ...
 
 def _register_blueprints(app) -> None:
-    ...
+    app.register_blueprint(analytics_blueprint)
