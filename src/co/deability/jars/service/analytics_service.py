@@ -2,7 +2,7 @@ from subprocess import CompletedProcess
 
 import subprocess
 
-from co.deability.lirs.config import LOG
+from co.deability.jars.config import LOG
 
 
 def run(script: str) -> str:
@@ -23,7 +23,7 @@ def run(script: str) -> str:
 def validate(script: str) -> bool:
     """
     Returns `True` if the supplied R script can be executed by Rscript, `False` otherwise.
-    
+
     :param script: The script to be validated.
     :return: `True` if the supplied R script can be executed by Rscript, `False` otherwise.
     """

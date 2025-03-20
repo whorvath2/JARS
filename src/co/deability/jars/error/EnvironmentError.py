@@ -1,17 +1,17 @@
 import sys
 from http import HTTPStatus
 
-from co.deability.lirs.error.LirsError import LirsError
+from co.deability.jars.error.JarsError import JarsError
 
 
-class EnvironmentError(LirsError):
+class EnvironmentError(JarsError):
     """
-    Thrown when the LIRS API is being run in a malformed environment.
+    Thrown when the JARS API is being run in a malformed environment.
     """
 
     def __init__(self, explanation: str):
         super().__init__(
-            message=f"LIRS cannot start: {explanation}",
+            message=f"JARS cannot start: {explanation}",
             error_code=HTTPStatus.INTERNAL_SERVER_ERROR,
         )
         sys.exit(explanation)

@@ -5,9 +5,9 @@ from typing import Final
 LOG: Final[Logger] = logging.getLogger()
 
 
-class LirsError(Exception):
+class JarsError(Exception):
     """
-    Base class for LIRS-specific exceptions.
+    Base class for JARS-specific exceptions.
     """
 
     def __init__(self, message: str, error_code: int):

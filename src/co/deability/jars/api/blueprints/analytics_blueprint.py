@@ -3,7 +3,7 @@ from typing import Final, Tuple
 
 from flask import Blueprint, make_response, request
 
-from co.deability.lirs.service import analytics_service
+from co.deability.jars.service import analytics_service
 
 
 analytics_blueprint: Blueprint = Blueprint(
