@@ -1,31 +1,31 @@
-# LIRS - a Less Irritating R Server
+# JARS - Just Another R Server
 
-The purpose of LIRS is to provide a reliable and performant HTTP API for accessing the powerful data analytics and machine learning capabilities of R.
+The purpose of JARS is to provide a reliable and performant HTTP API for accessing the powerful data analytics and machine learning capabilities of R.
 
 
 ## Requirements
 
-LIRS requires Python 13+.
+JARS requires Python 13+.
 
 ## Environment
-LIRS supports the following environment variables.
+JARS supports the following environment variables.
 
 ### Logging (required)
 Note the supported values for both are CRITICAL, FATAL, ERROR, WARN, INFO, or DEBUG:
 
-  - LIRS_LOG_LEVEL _Specifies the logging level for LIRS_
-  - ROOT_LOG_LEVEL _Specifies the logging level for dependencies used by LIRS_
+  - JARS_LOG_LEVEL _Specifies the logging level for JARS_
+  - ROOT_LOG_LEVEL _Specifies the logging level for dependencies used by JARS_
 
 ## Setup
-Create a virtual environment for LIRS:
+Create a virtual environment for JARS:
 
     python -m venv .venv
     source .venv/bin/activate
 
 ## Execution
 
-    python src/co/deability/lirs/api/app.py
+    python src/co/deability/jars/api/app.py
 
 ## Testing
 
-    curl -X POST -d "x=1; print(x)" 127.0.0.1/lirs/analytics/run/rscript
+    curl -X POST -d "x=1; print(x)" 127.0.0.1/jars/analytics/run/rscript

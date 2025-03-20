@@ -1,7 +1,7 @@
 [project]
-name = "lirs"
+name = "jars"
 version = "0.1.0"
-description = "LIRS is a Less Irritating R Server"
+description = "JARS is Just Another R Server"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
