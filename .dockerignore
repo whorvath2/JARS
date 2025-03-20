@@ -1,0 +1,13 @@
+.mypy_cache*
+.pytest_cache*
+.vscode*
+.venv*
+.git*
+buildspec.yml
+deployspec.yml
+testspec.yml
+README*
+src/tests/*
+*.crt
+*.key
+*.pem

@@ -7,7 +7,7 @@ from co.deability.jars.service import analytics_service
 
 
 analytics_blueprint: Blueprint = Blueprint(
-    "analytics", __name__, url_prefix="/lirs/analytics"
+    "analytics", __name__, url_prefix="/jars/analytics"
 )
 
 EMPTY_SUCCESS_RESPONSE: Final[Tuple[str, int]] = ("", HTTPStatus.NO_CONTENT)
