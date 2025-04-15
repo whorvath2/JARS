@@ -1,7 +1,7 @@
 import sys
 from http import HTTPStatus
 
-from co.deability.jars.error.JarsError import JarsError
+from co.deability.jars.error.jars_error import JarsError
 
 
 class EnvironmentError(JarsError):

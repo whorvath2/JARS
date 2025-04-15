@@ -1,8 +1,9 @@
 from subprocess import CompletedProcess
-
 import subprocess
+import shlex
 
 from co.deability.jars.config import LOG
+from co.deability.jars.error.r_script_error import RScriptError
 
 
 def run(script: str) -> str:
@@ -13,12 +14,15 @@ def run(script: str) -> str:
     :return: The output of RScript's execution of the supplied script.
     """
     if not validate(script):
-        raise ValueError("You bad scripter you!")
-    completed_process: CompletedProcess = subprocess.run(["Rscript", "-e", script], capture_output=True)
+        raise RScriptError(bad_script=script)
+    completed_process: CompletedProcess = subprocess.run(
+        ["Rscript", "-e", script], capture_output=True
+    )
     LOG.debug(vars(completed_process))
     if completed_process.returncode != 0:
-        raise RuntimeError("You bad Rscript runner you!")
+        raise RScriptError(bad_script=script)
     return completed_process.stdout.decode("utf-8")
+
 
 def validate(script: str) -> bool:
     """
@@ -27,7 +31,16 @@ def validate(script: str) -> bool:
     :param script: The script to be validated.
     :return: `True` if the supplied R script can be executed by Rscript, `False` otherwise.
     """
+    r_command = shlex.quote(script)
     completed_process: CompletedProcess = subprocess.run(
-        ["Rscript", "-e", f"'parse(text = {script})'"], capture_output=True)
-    LOG.debug(vars(completed_process))
-    return completed_process.returncode == 0
+        ["Rscript", "-e", r_command],
+        capture_output=True,
+        shell=False,
+    )
+    return_code = completed_process.returncode
+    LOG.debug(
+        f"Return code: {return_code}\n"
+        f"StdOut: {completed_process.stdout}\n"
+        f"StdErr: {completed_process.stderr}\n"
+    )
+    return return_code == 0
