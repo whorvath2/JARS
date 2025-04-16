@@ -15,8 +15,11 @@ def run(script: str) -> str:
     """
     if not validate(script):
         raise RScriptError(bad_script=script)
+
+    script = shlex.quote(script)
+    r_command = rf"eval(str2expression({script}))"
     completed_process: CompletedProcess = subprocess.run(
-        ["Rscript", "-e", script], capture_output=True
+        ["Rscript", "-e", r_command], capture_output=True, shell=False
     )
     LOG.debug(vars(completed_process))
     if completed_process.returncode != 0:
@@ -31,16 +34,12 @@ def validate(script: str) -> bool:
     :param script: The script to be validated.
     :return: `True` if the supplied R script can be executed by Rscript, `False` otherwise.
     """
-    r_command = shlex.quote(script)
+    script = shlex.quote(script)
+    r_command = f"str2expression({script});"
     completed_process: CompletedProcess = subprocess.run(
         ["Rscript", "-e", r_command],
         capture_output=True,
         shell=False,
     )
     return_code = completed_process.returncode
-    LOG.debug(
-        f"Return code: {return_code}\n"
-        f"StdOut: {completed_process.stdout}\n"
-        f"StdErr: {completed_process.stderr}\n"
-    )
     return return_code == 0
